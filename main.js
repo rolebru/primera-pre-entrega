@@ -1,32 +1,34 @@
 
-function loguear() {
+function reconocer() {
 
 //sistema de reserva de cancha con usuario
 
 let identificar = true // lo que me valida todo en while
-let intentos = 1
 
-do{
-    let usuario = prompt("ingresa tu usuario (solo 3 intentos)")
-    if(usuario ===null){//si es null se salta al sig paso
+
+do{ 
+    let deportista = prompt ( "ingresa Deportista" )
+    if(deportista === null){//si es null se salta al sig paso
         break
     }
 
-    if(usuario === "rodrigo valdivieso" && intentos <=3){
-        alert("Bienvenido " + usuario)
-        identificar = false //para que no se vuelva a ejecutar
-    }else{
-        alert("no se reconoce usuario " + usuario)
-        intentos++
-        if(intentos > 3){
-            alert("supero los 3 intentos, intente mas tarde")
-            console.error("user is not define")
-            break
-        }
-    }
+    if(deportista === "lionel messi" ){
+        alert("futbolista " + deportista + " el mas grande")
+        
 
+    }else if(deportista === "novak djocovick"){
+        alert("tenista " + deportista + " numero 1 del mundo")
+
+    }else if(deportista === "tiger woods"){
+        alert("golfista " + deportista + " crack")
+        break
+    }else{
+        alert("no se reconoce deportista, intenta de nuevo")
+    }
 
 } while(identificar)
 
 
 }
+
+reconocer()
