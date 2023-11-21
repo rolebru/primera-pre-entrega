@@ -1,30 +1,70 @@
 
 
+//aporte energetico de las verduras, la ideas es ir haciendo una calculadora de Kcal de verduras y del ser humano.
+// nos pregunta que verdura queremos buscar y nos tira la info en una tabla.
 
-
-
-const Verduras = function(nombre,calorias,gramos){
+const Verdura = function(nombre,Kcal,gramos){
 
     this.nombre = nombre
-    this.calorias = calorias
+    this.Kcal = Kcal
     this.gramos = gramos
 
 }
 
-let Verdura1 = new Verduras("tomate", 1500, 20)
-let Verdura2 = new Verduras("brocoli", 1500, 20)
-let Verdura3 = new Verduras("lechuga", 1500, 20)
-let Verdura4 = new Verduras("espinaca", 1500, 20)
-let Verdura5 = new Verduras("acelga", 1500, 20)
-let Verdura6 = new Verduras("calabaza", 1500, 20)
-let Verdura7 = new Verduras("zanahoria", 1500, 20)
+let verdura1 = new Verdura("pepino", 12, 100)
+let verdura2 = new Verdura("berenjena", 20, 100)
+let verdura3 = new Verdura("lechuga", 16, 100)
+let verdura4 = new Verdura("espinaca", 22, 100)
+let verdura5 = new Verdura("acelga", 29, 100)
+let verdura6 = new Verdura("calabaza", 12, 100)
+let verdura7 = new Verdura("alcachofa", 23, 100)
+let verdura8 = new Verdura("zanahoria", 34, 100)
+let verdura9 = new Verdura("calabacin", 17, 100)
+let verdura10 = new Verdura("cebolla", 26, 100)
+let verdura11 = new Verdura("ajo", 117, 100)
+let verdura12 = new Verdura("coliflor", 18, 100)
+let verdura13 = new Verdura("pimiento", 29, 100)
+let verdura14 = new Verdura("repollo", 26, 100)
+let verdura15 = new Verdura("puerro", 24, 100)
 
 
-let lista = [Verdura1,Verdura2,Verdura3,Verdura4,Verdura5,Verdura6,Verdura7]
+
+let lista = [verdura1,verdura2,verdura3,verdura4,verdura5,verdura6,verdura7,verdura8,verdura9,verdura10,verdura11,verdura12,verdura13,verdura14,verdura15]
 
 
-function filtrarVerduras(){
+function filtrarVerduras(){ //lo usamos en el console para wue nos salte el prompt
 
-    let palabraClave = prompt("ingresa la Verdura que buscas").toUpperCase()
+    let palabraClave = prompt("ingresa la Verdura que buscas").toUpperCase().trim()
     let resultado = lista.filter((x)=>x.nombre.toUpperCase().includes(palabraClave))
+
+
+
+    if(resultado.length >0){
+        console.table(resultado)
+    }else{
+        alert("no se encontro verdura " + palabraClave)
+    }
+
+
+}
+
+
+function agregarVerdura(){
+
+    let nombre = prompt("ingresa el nombre de la verdura")
+    let Kcal = parseFloat(prompt("ingresa las Kcal de la verdura")) 
+    let gramos = parseInt(prompt("ingresa los gramos de la verdura"))
+
+
+    if(isNaN(Kcal) || isNaN(gramos) || nombre===""){
+        alert("por favor ingresa valores validos")
+        return
+    }
+
+    let verdura = new Verdura(nombre,Kcal,gramos)
+
+    lista.push(verdura)
+    console.table(lista)
+
+
 }
