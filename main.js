@@ -82,11 +82,88 @@ function filtrarVerduras(){
 }
 
 
+function agregarVerdura(){
+
+    const form = document.createElement("form")  
+    form.innerHTML=`
+    <label for="nombre-input">Nombre:</label>
+    <input id= "nombre-input" type="text" step="0.01" required>
+    
+    <label for="Kcal-input">Kcal:</label>
+    <input id= "Kcal-input" type="number" step="0.01" required>
+
+    <label for="gramos-input">gramos:</label>
+    <input id= "gramos-input" type="number" step="0.01" required>
+
+    <button type="submit">Agregar</button>
+    `
+
+    form.addEventListener("submit", function (e){ 
+        e.preventDefault();
+
+        const nombreInput = document.getElementById("nombre-input").value.trim()
+        const KcalInput = parseFloat(document.getElementById("Kcal-input").value)
+        const gramosInput = parseInt(document.getElementById("gramos-input").value)
+
+        if(isNaN(KcalInput) || isNaN(gramosInput) || nombreInput === ""){
+            alert("por favor ingresa valores validos.")
+            return
+        }
+
+        const verdura = new Verdura (nombreInput, KcalInput, gramosInput)
+
+        if (lista.some( (elemento)=> elemento.nombre === verdura.nombre)){ 
+            alert("Ya tenemos la verdura")
+            return
+        }
+
+        lista.push(verdura) 
+
+        localStorage.setItem("verduras", JSON.stringify(lista))
+        alert(`se agrego la verdura ${verdura.nombre} a la lista`)  
+
+gramos
+
+        const container =  document.createElement("div")
+        
+        lista.forEach((verdura)=>{
+            const card = document.createElement("div")
+
+            const nombre = document.createElement("h2")
+        nombre.textContent = `nombre: ${verdura.nombre}`
+        card.appendChild(nombre)
+
+        const Kcal = document.createElement("p")
+        Kcal.textContent = `Kcal: ${verdura.Kcal}`
+        card.appendChild(Kcal)
+
+        const gramos = document.createElement("p")
+        gramos.textContent = `cantidad: ${verdura.gramos}`
+        card.appendChild(gramos)
+        container.appendChild(card)
+        })
+
+        const body = document.querySelector("body")
+        body.appendChild(container) 
+
+        form.reset()   
+
+    })
+
+    const body = document.querySelector("body")
+    body.appendChild(form)
+
+}
+
 
 
 const filtrarBoton = document.getElementById("boton")
 filtrarBoton.classList.add("button")
 filtrarBoton.addEventListener("click",filtrarVerduras)
+
+
+const agregarBoton = document.getElementById("agregarVerdura")
+agregarBoton.addEventListener("click",agregarVerdura)
 
 // function filtrarVerduras(){ //lo usamos en el console para wue nos salte el prompt
 
